@@ -1,0 +1,17 @@
+scss_files: 'app/styles/*.css.scss'
+
+linters:
+  BorderZero:
+    enabled: false
+
+  Indentation:
+    enabled: true
+    allow_non_nested_indentation: false
+    character: 'tab'
+    width: 1
+
+  LeadingZero:
+    style: include_zero
+
+  QualifyingElement:
+    enabled: false
