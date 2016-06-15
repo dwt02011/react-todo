@@ -151,4 +151,23 @@ describe('Actions', () => {
 
 		});
 	});
+
+	it('should generate LOGIN action', () => {
+		var action = {
+			type: 'LOGIN',
+			uid: '26165'
+		};
+		var res = actions.login(action.uid);
+
+		expect(res).toEqual(action);
+	});
+
+	it('should generate LOGOUT action', () => {
+		var action = {
+			type: 'LOGOUT'
+		};
+		var res = actions.logout();
+
+		expect(res).toEqual(action);
+	});
 });

@@ -94,7 +94,7 @@ describe('Reducers', () => {
 			expect(res[1].completedAt).toBe(null);			
 		});
 
-		it('should should add existing todos', () => {
+		it('should add existing todos', () => {
 			var todos = [{
 				id: '111',
 				text: 'anything',
@@ -110,6 +110,30 @@ describe('Reducers', () => {
 
 			expect(res.length).toEqual(1);
 			expect(res).toEqual(todos);
+		});
+	});
+
+	describe('authReducer', () => {
+		it('should update auth uid on login', () => {
+			var action = {
+				type: 'LOGIN',
+				uid: '26165'
+			};
+			var res = reducers.authReducer(df({}), df(action));
+
+			expect(res.uid).toBe(action.uid);
+		});
+
+		it('should remove auth uid on logout', () => {
+			var auth = {
+				uid: '26165'
+			};
+			var action = {
+				type: 'LOGOUT'
+			};
+			var res = reducers.authReducer(df(auth), df(action));
+
+			expect(res).toNotIncludeKey('uid');
 		});
 	});
 });
