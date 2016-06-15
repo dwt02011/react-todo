@@ -27,6 +27,9 @@
             "error",
             "unix"
         ],
+        "no-console": [
+            "off"
+        ],
         "no-fallthrough": [
             "off"
         ],
@@ -44,10 +47,5 @@
         "react/prop-types": [
             0
         ]
-    },
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        }
     }
 }
