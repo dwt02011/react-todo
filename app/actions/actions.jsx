@@ -45,9 +45,42 @@ export var addTodos = todos => {
 	};
 };
 
-export var toggleTodo = id => {
-	return {
-		type: 'TOGGLE_TODO',
-		id
+export var startAddTodos = () => {
+	return (dispatch, getState) => {
+		var todosRef = firebaseRef.child('todos');
+
+		return todosRef.once('value').then((snapshot) => {
+			var objTodos = snapshot.val() || {};
+			var todos = Object.keys(objTodos).map((id) => {
+				return {
+					id,
+					...objTodos[id]
+				};
+			});
+			
+			dispatch(addTodos(todos));
+		});
 	};
+};
+
+export var updateTodo = (id, updates) => {
+	return {
+		type: 'UPDATE_TODO',
+		id,
+		updates
+	};
+};
+
+export var startToggleTodo = (id, completed) => {
+	return (dispatch, getState) => {
+		var todoRef = firebaseRef.child(`todos/${id}`);
+		var updates = {
+			completed,
+			completedAt: completed ? moment().unix() : null
+		}
+
+		return todoRef.update(updates).then(() => {
+			dispatch(updateTodo(id, updates));
+		});
+	}
 };

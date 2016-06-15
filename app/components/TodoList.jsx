@@ -6,6 +6,7 @@ var TodoAPI = require('TodoAPI');
 export var TodoList = React.createClass({
 	render: function () {
 		var {todos, showCompleted, searchText} = this.props;
+		todos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 		var renderTodos = () => {
 			if (todos.length === 0) {
 				return (
@@ -13,7 +14,7 @@ export var TodoList = React.createClass({
 				);
 			}
 			
-			return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
+			return todos.map((todo) => {
 				return (
 					<Todo key={todo.id} {...todo}/>
 				);
