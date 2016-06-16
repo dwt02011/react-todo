@@ -94,6 +94,16 @@ describe('Reducers', () => {
 			expect(res[1].completedAt).toBe(null);			
 		});
 
+		it('should remove all todos from store', () => {
+			var action = {
+				type: 'LOGOUT'
+			};
+			var res = reducers.todosReducer(df(todos), df(action));
+
+			expect(res.length).toBe(0);
+
+		});
+
 		it('should add existing todos', () => {
 			var todos = [{
 				id: '111',

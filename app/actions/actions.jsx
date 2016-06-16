@@ -53,6 +53,7 @@ export var startAddTodos = () => {
 
 		return todosRef.once('value').then((snapshot) => {
 			var objTodos = snapshot.val() || {};
+			// add todo's key in firebase as id
 			var todos = Object.keys(objTodos).map((id) => {
 				return {
 					id,
